@@ -22,8 +22,8 @@
             --text-light: #718096; /* Gray-600 */
             --accent-color: #FF7B54; /* Peachy Orange */
             --accent-color-rgb: 255, 123, 84;
-            --glass-bg: rgba(255, 255, 255, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.9);
+            --card-bg-solid: #FFFFFF;
+            --card-border: #E2E8F0; /* Gray-200 */
         }
 
         body {
@@ -68,18 +68,17 @@
         @keyframes move-blob-1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(100px, 80px) scale(1.2); } }
         @keyframes move-blob-2 { from { transform: translate(0, 0) scale(1); } to { transform: translate(-80px, -60px) scale(0.8); } }
 
-        /* Light-Mode Glassmorphism Card Style */
-        .card-glass-light {
-            background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border);
+        /* Solid "Frosted" Card Style (Browser-Compatible) */
+        .card-solid-frost {
+            background: var(--card-bg-solid);
+            /* backdrop-filter has been removed */
+            border: 1px solid var(--card-border);
             border-radius: 1.5rem; /* 24px */
             box-shadow: 0 8px 32px 0 rgba(100, 100, 100, 0.1);
             padding: 2.5rem;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        .card-glass-light:hover {
+        .card-solid-frost:hover {
             transform: translateY(-8px);
             box-shadow: 0 16px 40px 0 rgba(100, 100, 100, 0.15);
         }
@@ -107,8 +106,8 @@
         
         /* Form Input Style */
         .form-input {
-             background-color: rgba(255, 255, 255, 0.5);
-             border: 1px solid var(--glass-border);
+             background-color: #F7FAFC; /* Gray-100 */
+             border: 1px solid var(--card-border);
              border-radius: 0.75rem;
              color: var(--text-dark);
              transition: all 0.3s;
@@ -135,10 +134,10 @@
         </header>
 
         <section id="hero" class="mb-20" data-aos="fade-up" data-aos-delay="100">
-            <div class="card-glass-light text-center">
+            <div class="card-solid-frost text-center">
                 <h2 class="text-3xl font-bold mb-2">A New Market Perspective</h2>
                 <p class="text-lg text-gray-600 max-w-xl mx-auto mb-8">The industry is experiencing unprecedented momentum. We provide the clarity to navigate this growth and establish market leadership.</p>
-                <div class="inline-block bg-white/50 p-6 rounded-2xl">
+                <div class="inline-block bg-gray-100 p-6 rounded-2xl border border-gray-200">
                     <p id="cagr" class="text-6xl font-bold text-gray-800">0%</p>
                     <p class="text-base text-gray-600 mt-1">Projected Annual Growth</p>
                 </div>
@@ -151,21 +150,21 @@
                 <p class="text-lg text-gray-500 mt-2">Tailored tiers of strategic engagement.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card-glass-light text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-solid-frost text-center" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-2xl font-semibold mb-2">Foundation</h3>
                     <p class="text-gray-600 mb-6">Establish a strong presence.</p>
                     <p class="text-4xl font-bold mb-6">35k<span class="text-lg font-medium text-gray-500"> EGP/mo</span></p>
                     <button @click="modalOpen = true; selectedPackage.title = 'Foundation'" class="secondary-btn font-semibold">Learn More</button>
                 </div>
                 <div class="transform md:scale-110 z-10" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-glass-light text-center">
+                    <div class="card-solid-frost text-center">
                         <h3 class="text-2xl font-semibold mb-2">Accelerator</h3>
                         <p class="text-gray-600 mb-6">Generate tangible growth.</p>
                         <p class="text-4xl font-bold mb-6">50k<span class="text-lg font-medium text-gray-500"> EGP/mo</span></p>
                         <button @click="modalOpen = true; selectedPackage.title = 'Accelerator'" class="primary-btn px-8 py-3 font-semibold w-full">Choose Plan</button>
                     </div>
                 </div>
-                <div class="card-glass-light text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-solid-frost text-center" data-aos="fade-up" data-aos-delay="300">
                     <h3 class="text-2xl font-semibold mb-2">Vanguard</h3>
                     <p class="text-gray-600 mb-6">Define the industry standard.</p>
                     <p class="text-4xl font-bold mb-6">130k<span class="text-lg font-medium text-gray-500"> EGP/mo</span></p>
@@ -173,7 +172,7 @@
                 </div>
             </div>
              <div x-show="modalOpen" @keydown.escape.window="modalOpen = false" class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-cloak>
-                <div class="card-glass-light max-w-md w-full" @click.away="modalOpen = false" x-show="modalOpen" x-transition.opacity.duration.300ms>
+                <div class="card-solid-frost max-w-md w-full" @click.away="modalOpen = false" x-show="modalOpen" x-transition.opacity.duration.300ms>
                     <h3 class="text-2xl font-bold text-center" x-text="selectedPackage.title"></h3>
                     <p class="text-gray-600 mt-4 text-center">Detailed service offerings for this tier are available upon request. Let's discuss your specific needs in a strategy call.</p>
                     <button @click="modalOpen = false" class="mt-6 w-full secondary-btn py-2 font-bold">Close</button>
@@ -182,14 +181,14 @@
         </section>
 
         <section id="contact" class="mb-16" data-aos="fade-up" data-aos-delay="200" x-data="{ formOpen: false, formSubmitted: false }">
-            <div class="card-glass-light text-center">
+            <div class="card-solid-frost text-center">
                 <h2 class="text-3xl font-bold text-gray-800 mb-2">Ready to Begin?</h2>
                 <p class="text-lg text-gray-600 max-w-xl mx-auto mb-8">Let's schedule a brief introductory call to explore how we can elevate your brand together.</p>
                 <button @click="formOpen = true" class="primary-btn px-10 py-4 font-bold text-lg">Schedule a Strategy Call</button>
             </div>
 
             <div x-show="formOpen" @keydown.escape.window="formOpen = false" class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-cloak>
-                <div class="card-glass-light max-w-md w-full relative" @click.away="formOpen = false" x-show="formOpen" x-transition.opacity.duration.300ms>
+                <div class="card-solid-frost max-w-md w-full relative" @click.away="formOpen = false" x-show="formOpen" x-transition.opacity.duration.300ms>
                     <div x-show="formSubmitted" class="text-center">
                         <h3 class="text-2xl font-bold mb-2">Thank You</h3>
                         <p class="text-gray-600 mb-6">Your request has been sent. We'll be in touch soon.</p>
