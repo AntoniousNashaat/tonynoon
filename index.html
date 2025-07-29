@@ -1,10 +1,3 @@
-Of course. I will overhaul the provided HTML, injecting a "maximalist" design philosophy, significantly enhancing animations, adding new, interactive sections, and integrating your contact details for a powerful call to action.
-
-The result will be a more vibrant, engaging, and persuasive B2B proposal page that commands attention.
-
-Here is the improved and enhanced code:
-
-```html
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -19,11 +12,6 @@ Here is the improved and enhanced code:
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js" defer></script>
     
     <script src="//unpkg.com/alpinejs" defer></script>
     
@@ -35,15 +23,9 @@ Here is the improved and enhanced code:
             background-image: radial-gradient(#185ADB 0.5px, transparent 0.5px);
             background-size: 20px 20px;
         }
-        .font-display {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        .text-glow-blue {
-            text-shadow: 0 0 8px rgba(24, 90, 219, 0.7), 0 0 20px rgba(24, 90, 219, 0.5);
-        }
-        .text-glow-gold {
-            text-shadow: 0 0 8px rgba(255, 201, 71, 0.8), 0 0 20px rgba(255, 201, 71, 0.6);
-        }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .text-glow-blue { text-shadow: 0 0 8px rgba(24, 90, 219, 0.7), 0 0 20px rgba(24, 90, 219, 0.5); }
+        .text-glow-gold { text-shadow: 0 0 8px rgba(255, 201, 71, 0.8), 0 0 20px rgba(255, 201, 71, 0.6); }
         .card-glass {
             background: rgba(24, 90, 219, 0.1);
             backdrop-filter: blur(12px);
@@ -58,16 +40,12 @@ Here is the improved and enhanced code:
             border: 2px solid #FFC947;
             box-shadow: 0 0 25px rgba(255, 201, 71, 0.5), 0 0 50px rgba(255, 201, 71, 0.3);
         }
-        .flow-arrow {
-            font-size: 3rem;
-            line-height: 1;
-            color: #FFC947;
-            text-shadow: 0 0 10px rgba(255,201,71,0.7);
-            transform: scale(1);
-            transition: transform 0.3s ease-in-out;
+        .interactive-element {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
-        .playbook-step:hover .flow-arrow {
-            transform: scale(1.2);
+        .interactive-element:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         .interactive-btn {
             background: linear-gradient(135deg, #FFC947, #F5A623);
@@ -79,15 +57,27 @@ Here is the improved and enhanced code:
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 30px rgba(255, 201, 71, 0.3);
         }
+        /* Style for the hover-to-reveal number */
+        .call-btn-text {
+            transition: max-width 0.4s ease-in-out, opacity 0.3s ease-in-out;
+            max-width: 0;
+            opacity: 0;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .call-btn:hover .call-btn-text {
+            max-width: 200px; /* Adjust as needed */
+            opacity: 1;
+        }
         .typewriter h1 {
             overflow: hidden; 
             border-right: .15em solid #FFC947; 
             white-space: nowrap; 
             margin: 0 auto; 
             letter-spacing: .1em; 
-            animation: 
-                typing 3.5s steps(30, end),
-                blink-caret .75s step-end infinite;
+            animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
         }
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #FFC947; } }
@@ -113,11 +103,11 @@ Here is the improved and enhanced code:
                         <canvas id="marketGrowthChart" aria-label="Egyptian Construction Market Growth Chart" role="img"></canvas>
                     </div>
                     <div class="flex flex-col justify-center space-y-8">
-                        <div class="bg-black/20 p-6 rounded-xl border-l-4 border-[#185ADB]" data-aos="fade-left" data-aos-delay="200">
+                        <div class="bg-black/20 p-6 rounded-xl border-l-4 border-[#185ADB] interactive-element" data-aos="fade-left" data-aos-delay="200">
                             <p id="cagr" class="text-6xl font-black text-[#185ADB] text-glow-blue">0%</p>
                             <p class="text-xl font-bold text-white">Projected CAGR Until 2029</p>
                         </div>
-                        <div class="bg-black/20 p-6 rounded-xl border-l-4 border-[#FFC947]" data-aos="fade-left" data-aos-delay="350">
+                        <div class="bg-black/20 p-6 rounded-xl border-l-4 border-[#FFC947] interactive-element" data-aos="fade-left" data-aos-delay="350">
                             <p class="text-lg text-slate-300">This explosion in demand creates a vacuum at the top for premium, authority-driven contractors. It's an escape from price wars and a direct path to higher-margin projects.</p>
                         </div>
                     </div>
@@ -130,35 +120,35 @@ Here is the improved and enhanced code:
                 <h2 class="text-4xl font-bold font-display text-white mb-4">From Investment To Tangible ROI</h2>
                 <p class="text-lg text-slate-300 mb-10 max-w-3xl mx-auto">Our "Strategic Partner" package isn't an expense; it's a revenue-generating machine. Let's visualize the potential.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
-                    <div class="bg-black/20 p-6 rounded-xl" data-aos="flip-left" data-aos-delay="100">
+                    <div class="bg-black/20 p-6 rounded-xl interactive-element" data-aos="flip-left" data-aos-delay="100">
                         <p class="text-lg text-slate-400 mb-2">Monthly Investment</p>
                         <p class="text-4xl font-bold font-display">EGP 49,999</p>
                     </div>
-                    <div class="bg-black/20 p-6 rounded-xl" data-aos="flip-up" data-aos-delay="250">
+                    <div class="bg-black/20 p-6 rounded-xl interactive-element" data-aos="flip-up" data-aos-delay="250">
                         <p class="text-lg text-slate-400 mb-2">Qualified Leads Generated (Est.)</p>
                         <p id="leads-generated" class="text-4xl font-bold font-display text-[#FFC947] text-glow-gold">0</p>
                     </div>
-                    <div class="bg-black/20 p-6 rounded-xl" data-aos="flip-right" data-aos-delay="400">
+                    <div class="bg-black/20 p-6 rounded-xl interactive-element" data-aos="flip-right" data-aos-delay="400">
                         <p class="text-lg text-slate-400 mb-2">Potential Contract Value (Est.)</p>
-                        <p id="contract-value" class="text-4xl font-bold font-display text-[#185ADB] text-glow-blue">EGP 0</p>
+                        <p id="contract-value" class="text-4xl font-bold font-display text-[#185ADB] text-glow-blue">0</p>
                     </div>
                 </div>
-                <p class="text-slate-400 mt-8 text-sm">*Estimates based on a conservative 5% lead-to-meeting conversion and a modest average project value. The potential is often far greater.</p>
+                <p class="text-slate-400 mt-8 text-sm">*Estimates based on a conservative 5% lead-to-meeting conversion and a modest average project value.</p>
             </div>
         </section>
 
         <section id="packages" class="mb-24" x-data="{ modalOpen: false, selectedPackage: {} }">
             <h2 class="text-4xl font-bold font-display text-white text-center mb-4" data-aos="fade-down">Growth Packages: Engineered for Results</h2>
-            <p class="text-center text-lg text-slate-300 mb-12 max-w-3xl mx-auto" data-aos="fade-down" data-aos-delay="100">Three tiers of engagement, each designed for a specific level of ambition. From establishing presence to total market domination.</p>
+            <p class="text-center text-lg text-slate-300 mb-12 max-w-3xl mx-auto" data-aos="fade-down" data-aos-delay="100">Three tiers of engagement, each designed for a specific level of ambition.</p>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto items-start">
                 
-                <div class="package-card card-glass rounded-2xl p-8 h-full flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl" data-aos="fade-right">
+                <div class="package-card card-glass rounded-2xl p-8 h-full flex flex-col interactive-element" data-aos="fade-right">
                     <div class="flex-grow">
                         <h3 class="text-3xl font-bold font-display text-white">Digital Engine</h3>
                         <p class="text-slate-400 mb-6">Foundational Strength & Visual Authority.</p>
                         <div class="text-5xl font-black text-white mb-6">EGP 34,999 <span class="text-2xl font-bold text-slate-400">/mo</span></div>
                         <ul class="space-y-4 text-lg text-slate-300">
-                             <li class="flex items-start"><span class="text-[#185ADB] text-2xl mr-3">◆</span><span>Professional account management.</span></li>
+                            <li class="flex items-start"><span class="text-[#185ADB] text-2xl mr-3">◆</span><span>Professional account management.</span></li>
                             <li class="flex items-start"><span class="text-[#185ADB] text-2xl mr-3">◆</span><span class="font-bold">12 monthly posts</span> (4 videos).</li>
                             <li class="flex items-start"><span class="text-[#185ADB] text-2xl mr-3">◆</span><span>Company profile & print materials.</span></li>
                             <li class="flex items-start"><span class="text-[#185ADB] text-2xl mr-3">◆</span><span>Monthly performance report.</span></li>
@@ -167,7 +157,7 @@ Here is the improved and enhanced code:
                     <button @click="modalOpen = true; selectedPackage = {title: 'Digital Engine', price: '34,999', details: 'This package is ideal for establishing a consistent and professional digital footprint. It focuses on high-quality visual content to build brand awareness and credibility in the market.'}" class="interactive-btn mt-8 w-full py-3 rounded-xl font-bold text-lg">Choose Plan</button>
                 </div>
 
-                <div class="package-card popular card-glass rounded-2xl p-8 relative flex flex-col transform lg:scale-110" data-aos="fade-up" data-aos-delay="200">
+                <div class="package-card popular card-glass rounded-2xl p-8 relative flex flex-col interactive-element lg:scale-105" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
                         <span class="bg-[#FFC947] text-[#0A1931] text-sm font-bold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
                     </div>
@@ -186,7 +176,7 @@ Here is the improved and enhanced code:
                     <button @click="modalOpen = true; selectedPackage = {title: 'Strategic Partner', price: '49,999', details: 'Our flagship service. We don\'t just post content; we actively hunt for high-value B2B clients using a systematic outreach process, backed by market intelligence to keep you ahead of the competition.'}" class="interactive-btn mt-8 w-full py-3 rounded-xl font-bold text-lg">Choose Plan</button>
                 </div>
 
-                <div class="package-card card-glass rounded-2xl p-8 h-full flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl" data-aos="fade-left">
+                <div class="package-card card-glass rounded-2xl p-8 h-full flex flex-col interactive-element" data-aos="fade-left">
                      <div class="flex-grow">
                         <h3 class="text-3xl font-bold font-display text-white">Market Dominance</h3>
                         <p class="text-slate-400 mb-6">Become An Industry Icon & Build a Legacy.</p>
@@ -202,7 +192,6 @@ Here is the improved and enhanced code:
                     <button @click="modalOpen = true; selectedPackage = {title: 'Market Dominance', price: '129,999', details: 'This is for visionary leaders who want to build more than a company—they want to build a legacy. We position you and your brand as the undisputed authority through high-level PR, documentary storytelling, and strategic networking.'}" class="interactive-btn mt-8 w-full py-3 rounded-xl font-bold text-lg">Choose Plan</button>
                 </div>
             </div>
-
             <div x-show="modalOpen" @keydown.escape.window="modalOpen = false" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50" x-cloak>
                 <div class="card-glass rounded-2xl shadow-2xl p-8 max-w-lg w-full" @click.away="modalOpen = false" x-show="modalOpen" x-transition.opacity.duration.300ms>
                     <h3 class="text-3xl font-bold font-display text-white" x-text="selectedPackage.title"></h3>
@@ -216,33 +205,30 @@ Here is the improved and enhanced code:
         <section id="lead-gen-playbook" class="mb-24" data-aos="zoom-in">
              <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold font-display text-white">The B2B Lead Generation Playbook</h2>
-                <p class="text-lg text-slate-300 max-w-3xl mx-auto">This is our proven, 4-step system for converting your expertise into qualified meetings. No guesswork, just results.</p>
+                <p class="text-lg text-slate-300 max-w-3xl mx-auto">Our proven, 4-step system for converting your expertise into qualified meetings. No guesswork, just results.</p>
             </div>
             <div class="relative flex flex-col lg:flex-row justify-between items-center w-full">
                 <div class="hidden lg:block absolute top-1/2 left-0 w-full h-1 border-t-2 border-dashed border-slate-600 -translate-y-1/2"></div>
                 
-                <div class="playbook-step z-10 flex flex-col items-center text-center w-64 mb-8 lg:mb-0" data-aos="fade-up" data-aos-delay="100">
+                <div class="playbook-step z-10 flex flex-col items-center text-center w-64 mb-8 lg:mb-0 interactive-element" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative card-glass w-32 h-32 rounded-full flex items-center justify-center text-5xl font-bold font-display text-white border-2 border-[#185ADB] mb-4">1</div>
                     <h4 class="font-bold text-xl text-white">Digital Foundation</h4>
                     <p class="text-sm text-slate-400">We optimize your online presence to command immediate respect and credibility.</p>
                 </div>
-                <div class="hidden lg:block flow-arrow z-10" data-aos="zoom-in" data-aos-delay="200">→</div>
                 
-                <div class="playbook-step z-10 flex flex-col items-center text-center w-64 mb-8 lg:mb-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="playbook-step z-10 flex flex-col items-center text-center w-64 mb-8 lg:mb-0 interactive-element" data-aos="fade-up" data-aos-delay="300">
                     <div class="relative card-glass w-32 h-32 rounded-full flex items-center justify-center text-5xl font-bold font-display text-white border-2 border-[#185ADB] mb-4">2</div>
                     <h4 class="font-bold text-xl text-white">Target Acquisition</h4>
                     <p class="text-sm text-slate-400">We build a hyper-targeted list of 50-100 ideal client companies and decision-makers.</p>
                 </div>
-                <div class="hidden lg:block flow-arrow z-10" data-aos="zoom-in" data-aos-delay="400">→</div>
 
-                <div class="playbook-step z-10 flex flex-col items-center text-center w-64 mb-8 lg:mb-0" data-aos="fade-up" data-aos-delay="500">
+                <div class="playbook-step z-10 flex flex-col items-center text-center w-64 mb-8 lg:mb-0 interactive-element" data-aos="fade-up" data-aos-delay="500">
                     <div class="relative card-glass w-32 h-32 rounded-full flex items-center justify-center text-5xl font-bold font-display text-white border-2 border-[#185ADB] mb-4">3</div>
                     <h4 class="font-bold text-xl text-white">Value-First Outreach</h4>
                     <p class="text-sm text-slate-400">We use thought-leadership content as the key to open doors, not aggressive sales pitches.</p>
                 </div>
-                <div class="hidden lg:block flow-arrow z-10" data-aos="zoom-in" data-aos-delay="600">→</div>
 
-                <div class="playbook-step z-10 flex flex-col items-center text-center w-64" data-aos="fade-up" data-aos-delay="700">
+                <div class="playbook-step z-10 flex flex-col items-center text-center w-64 interactive-element" data-aos="fade-up" data-aos-delay="700">
                     <div class="relative card-glass w-32 h-32 rounded-full flex items-center justify-center text-5xl font-bold font-display text-white border-2 border-[#185ADB] mb-4">4</div>
                     <h4 class="font-bold text-xl text-white">Secure the Meeting</h4>
                     <p class="text-sm text-slate-400">A systematic follow-up process converts warm leads into scheduled strategy calls.</p>
@@ -250,20 +236,49 @@ Here is the improved and enhanced code:
             </div>
         </section>
 
-        <section id="contact" class="my-24" data-aos="zoom-out">
-            <div class="relative rounded-2xl p-10 md:p-16 text-center overflow-hidden" style="background: linear-gradient(135deg, #185ADB, #0A1931 80%);">
+        <section id="contact" class="my-24" x-data="{ formOpen: false, formSubmitted: false }">
+            <div class="relative rounded-2xl p-10 md:p-16 text-center overflow-hidden card-glow-border" data-aos="zoom-out">
                 <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400/20 rounded-full filter blur-2xl"></div>
                 <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full filter blur-2xl"></div>
                 
                 <h2 class="text-4xl md:text-5xl font-black font-display text-white mb-4">Ready to Build Your Legacy?</h2>
-                <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-8">The market won't wait. Let's schedule a 15-minute call to discuss how this blueprint can be tailored to your specific goals.</p>
+                <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-8">The market won't wait. Let's discuss how this blueprint can be tailored to your specific goals.</p>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                    <a href="tel:01279775604" class="interactive-btn w-full md:w-auto px-10 py-4 rounded-xl font-bold text-xl transition-transform transform hover:scale-105">
-                        Call Now: 01279775604
+                    <a href="tel:01279775604" class="call-btn interactive-btn w-full md:w-auto px-10 py-4 rounded-xl font-bold text-xl">
+                        <span>Call Now: </span><span class="call-btn-text">01279775604</span>
                     </a>
-                     <a href="#" class="w-full md:w-auto px-10 py-4 rounded-xl font-bold text-xl text-white bg-white/10 border border-white/20 hover:bg-white/20 transition-all">
+                    <button @click="formOpen = true" class="w-full md:w-auto px-10 py-4 rounded-xl font-bold text-xl text-white bg-white/10 border border-white/20 hover:bg-white/20 transition-all transform hover:scale-105">
                         Schedule a Strategy Call
-                    </a>
+                    </button>
+                </div>
+            </div>
+            <div x-show="formOpen" @keydown.escape.window="formOpen = false" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50" x-cloak>
+                <div class="card-glass rounded-2xl shadow-2xl p-8 max-w-lg w-full relative" @click.away="formOpen = false" x-show="formOpen" x-transition.opacity.duration.300ms>
+                    <div x-show="formSubmitted" class="text-center" x-transition.opacity.duration.300ms>
+                        <h3 class="text-3xl font-bold font-display text-white mb-3">Thank You!</h3>
+                        <p class="text-lg text-slate-300 mb-6">Your request has been sent. We will be in touch shortly.</p>
+                        <button @click="formOpen = false; setTimeout(() => formSubmitted = false, 300)" class="w-full py-3 bg-gray-700/50 hover:bg-gray-600/50 rounded-lg text-white font-bold">Close</button>
+                    </div>
+                    <form x-show="!formSubmitted" id="strategy-form" class="space-y-6" action="YOUR_WEBHOOK_URL_HERE">
+                        <h3 class="text-3xl font-bold font-display text-white mb-6 text-center">Schedule Your Call</h3>
+                        <div>
+                            <label for="name" class="font-bold text-slate-300">Full Name</label>
+                            <input type="text" id="name" name="name" required class="w-full mt-2 p-3 bg-black/20 border-2 border-slate-600 rounded-lg text-white focus:outline-none focus:border-[#FFC947] transition-all">
+                        </div>
+                        <div>
+                            <label for="company" class="font-bold text-slate-300">Company Name</label>
+                            <input type="text" id="company" name="company" required class="w-full mt-2 p-3 bg-black/20 border-2 border-slate-600 rounded-lg text-white focus:outline-none focus:border-[#FFC947] transition-all">
+                        </div>
+                        <div>
+                            <label for="email" class="font-bold text-slate-300">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full mt-2 p-3 bg-black/20 border-2 border-slate-600 rounded-lg text-white focus:outline-none focus:border-[#FFC947] transition-all">
+                        </div>
+                        <div>
+                            <label for="phone" class="font-bold text-slate-300">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full mt-2 p-3 bg-black/20 border-2 border-slate-600 rounded-lg text-white focus:outline-none focus:border-[#FFC947] transition-all">
+                        </div>
+                        <button type="submit" class="interactive-btn w-full py-3 rounded-xl font-bold text-lg">Send Request</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -274,29 +289,22 @@ Here is the improved and enhanced code:
         <p>&copy; 2025 Growth Blueprint Services. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
+    
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Initialize AOS
-        if (window.AOS) {
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 50,
-            });
-        }
+        AOS.init({ duration: 800, once: true, offset: 50 });
 
         // Animated Numbers with CountUp.js
         if (window.CountUp) {
-            const options = { duration: 3, enableScrollSpy: true, scrollSpyDelay: 100 };
+            const options = { startVal: 0, duration: 3, enableScrollSpy: true, scrollSpyDelay: 100 };
             
             const cagr = new CountUp.CountUp('cagr', 8.39, { ...options, suffix: '%', decimalPlaces: 2 });
-            if (!cagr.error) cagr.start();
-
             const leads = new CountUp.CountUp('leads-generated', 8, { ...options, duration: 2.5 });
-            if (!leads.error) leads.start();
-            
             const value = new CountUp.CountUp('contract-value', 2500000, { ...options, prefix: 'EGP ', separator: ',' });
-            if (!value.error) value.start();
         }
 
         // Chart.js Configuration
@@ -304,7 +312,6 @@ Here is the improved and enhanced code:
         if (ctx) {
             Chart.defaults.font.family = "'Work Sans', sans-serif";
             Chart.defaults.color = '#94A3B8';
-
             const gradient = ctx.createLinearGradient(0, 0, 0, 350);
             gradient.addColorStop(0, 'rgba(24, 90, 219, 0.5)');
             gradient.addColorStop(1, 'rgba(24, 90, 219, 0)');
@@ -330,40 +337,45 @@ Here is the improved and enhanced code:
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: {
-                        duration: 2000,
-                        easing: 'easeOutQuart'
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(10, 25, 49, 0.8)',
-                            titleFont: { size: 16, weight: 'bold' },
-                            bodyFont: { size: 14 },
-                            padding: 12,
-                            callbacks: {
-                                label: (context) => ` $${context.parsed.y} Billion`
-                            }
-                        }
-                    },
+                    plugins: { legend: { display: false } },
                     scales: {
-                        y: {
-                            beginAtZero: false,
-                            grid: { color: 'rgba(100, 116, 139, 0.1)' },
-                            title: { display: true, text: 'Market Size (Billion USD)' }
-                        },
-                        x: {
-                            grid: { display: false },
-                            title: { display: true, text: 'Year' }
-                        }
+                        y: { grid: { color: 'rgba(100, 116, 139, 0.1)' }, title: { display: true, text: 'Market Size (Billion USD)' } },
+                        x: { grid: { display: false }, title: { display: true, text: 'Year' } }
                     }
                 }
             });
         }
+        
+        // Form Submission Logic
+        const form = document.getElementById('strategy-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const alpineComponent = document.querySelector('[x-data]').__x;
+            const webhookUrl = form.action;
+
+            // Simple check to ensure the user has replaced the placeholder URL
+            if (webhookUrl.includes("YOUR_WEBHOOK_URL_HERE")) {
+                alert("Form Error: Please connect the form to a webhook URL first.");
+                return;
+            }
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(res => {
+                if (res.ok) {
+                    alpineComponent.data.formSubmitted = true;
+                    form.reset();
+                } else {
+                    alert('There was a problem submitting your request.');
+                }
+            }).catch(error => alert('An error occurred.'));
+        });
     });
     </script>
 </body>
 </html>
-```
