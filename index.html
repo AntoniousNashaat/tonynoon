@@ -4,26 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Growth Architecture | B2B Market Leadership</title>
-    
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TailwindCSS & Alpine.js -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    
-    <script src="//unpkg.com/alpinejs" defer></script>
-    
+
+    <!-- Custom Style -->
     <style>
         :root {
-            --bg-color: #000000;
-            --card-color: #1A1A1A;
-            --border-color: #262626;
-            --text-primary: #FFFFFF;
-            --text-secondary: #A3A3A3;
-            --accent-color: #A3E635; /* Neon Lime Green */
-            --accent-color-rgb: 163, 230, 53;
+            --bg-color: #F8F7F5;
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-primary: #1A1A1A;
+            --text-secondary: #5E5E5E;
+            --accent-color: #FFB997;
         }
 
         body {
@@ -32,205 +33,146 @@
             color: var(--text-primary);
         }
 
-        /* Bento Box Grid Card Style */
-        .bento-card {
-            background-color: var(--card-color);
-            border: 1px solid var(--border-color);
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 1rem;
             padding: 2rem;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .bento-card:hover {
-            transform: translateY(-4px);
-            background-color: #222222;
-        }
-        
-        /* Text Styles */
-        .text-accent {
-            color: var(--accent-color);
-        }
-        .text-glow-accent {
-            text-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.4);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease-in-out;
         }
 
-        /* Button Styles */
-        .primary-btn {
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-serif {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        .accent {
+            color: var(--accent-color);
+        }
+
+        .btn-peach {
             background-color: var(--accent-color);
-            color: #101010; /* Darker text for contrast on neon */
-            transition: all 0.3s;
+            color: white;
             border-radius: 0.5rem;
+            transition: all 0.3s ease;
         }
-        .primary-btn:hover {
+
+        .btn-peach:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(var(--accent-color-rgb), 0.4);
-        }
-        .secondary-btn {
-            background-color: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            transition: all 0.3s;
-            border-radius: 0.5rem;
-        }
-        .secondary-btn:hover {
-            border-color: var(--text-primary);
-            color: var(--text-primary);
-        }
-        
-        /* Form Input Style */
-        .form-input {
-             background-color: #090909;
-             border: 1px solid var(--border-color);
-             border-radius: 0.5rem;
-             color: var(--text-primary);
-             transition: all 0.3s;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(var(--accent-color-rgb), 0.2);
+            box-shadow: 0 0 20px rgba(255, 185, 151, 0.3);
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased" x-data="{ modalOpen: false }">
+    <div class="max-w-6xl mx-auto px-6 py-12">
 
-    <div class="max-w-7xl mx-auto p-4 md:p-8">
-
-        <header class="my-12 md:my-16 text-center" data-aos="fade-in">
-            <h1 class="text-5xl md:text-8xl font-black tracking-tighter text-white">Future-Proof</h1>
-            <h2 class="text-5xl md:text-8xl font-black tracking-tighter text-zinc-600">Your Growth.</h2>
-            <p class="text-xl md:text-2xl text-accent font-bold mt-4 text-glow-accent">High-Energy B2B Strategy & Execution.</p>
+        <!-- Hero Section -->
+        <header class="text-center mb-16" data-aos="fade-up">
+            <h1 class="text-5xl md:text-7xl font-bold text-serif">Future-Proof</h1>
+            <h2 class="text-5xl md:text-7xl font-bold text-gray-400 mt-2">Your Growth</h2>
+            <p class="text-xl text-serif accent mt-4">High-Energy B2B Strategy & Execution</p>
         </header>
 
+        <!-- Grid Section -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <div class="bento-card md:col-span-2 md:row-span-2 relative min-h-[400px] md:min-h-[600px] flex items-center justify-center overflow-hidden" data-aos="zoom-in">
-                 <img src="https://images.unsplash.com/photo-1534488825923-65b8de2175c4?q=80&w=1887&auto=format&fit=crop" 
-                     alt="Abstract wireframe globe representing data and connectivity"
-                     class="w-full h-full object-cover absolute inset-0 opacity-80 scale-110">
-                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+            <!-- Hero Image Card -->
+            <div class="glass-card md:col-span-2 md:row-span-2 min-h-[300px] flex items-center justify-center" data-aos="zoom-in">
+                <p class="text-lg text-center text-serif">Visual Placeholder</p>
             </div>
 
-            <div class="bento-card flex flex-col justify-center items-center text-center" data-aos="fade-left">
-                <p id="cagr" class="text-7xl font-black text-white">0%</p>
-                <p class="text-base text-zinc-400 mt-2">Projected CAGR<br>in Key Sectors</p>
+            <!-- Animated Metric -->
+            <div class="glass-card text-center" data-aos="fade-left">
+                <p id="cagr" class="text-6xl font-bold">0%</p>
+                <p class="text-sm text-gray-500 mt-2">Projected CAGR<br>in Key Sectors</p>
             </div>
-            
-            <div class="bento-card" data-aos="fade-up">
-                <h3 class="font-bold text-xl text-white mb-2">Technological Edge</h3>
-                <p class="text-zinc-400">Leverage data-driven insights and futuristic branding to create an insurmountable competitive advantage.</p>
+
+            <!-- Tech Insight -->
+            <div class="glass-card" data-aos="fade-up">
+                <h3 class="text-lg font-bold mb-2">Technological Edge</h3>
+                <p class="text-gray-600">Data-driven insights and futuristic branding to build advantage.</p>
             </div>
-            
-            <div class="bento-card md:col-span-3" data-aos="fade-up" x-data="{ modalOpen: false, selectedPackage: {} }">
-                <h3 class="font-bold text-xl text-white mb-6 text-center">Engagement Tiers</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="border border-zinc-800 p-6 rounded-lg flex flex-col">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-lg text-white">Digital Engine</h4>
-                            <p class="text-zinc-500 mb-4">Foundational Strength</p>
-                            <p class="text-3xl font-bold text-white">35k<span class="text-base font-normal text-zinc-500"> EGP/mo</span></p>
-                        </div>
-                        <button @click="modalOpen = true; selectedPackage = {title: 'Digital Engine'}" class="secondary-btn w-full py-2 mt-6">Details</button>
+
+            <!-- Pricing Cards -->
+            <div class="glass-card md:col-span-3" data-aos="fade-up">
+                <h3 class="text-xl font-bold text-center mb-6">Engagement Tiers</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="glass-card">
+                        <h4 class="font-semibold text-lg">Digital Engine</h4>
+                        <p class="text-sm text-gray-500 mb-3">35k EGP/mo</p>
+                        <button @click="modalOpen = true" class="mt-auto px-4 py-2 btn-peach w-full">Details</button>
                     </div>
-                    <div class="bg-zinc-900 border border-zinc-700 p-6 rounded-lg flex flex-col ring-2 ring-accent" data-aos="zoom-in-up">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-lg text-white">Strategic Partner</h4>
-                            <p class="text-zinc-500 mb-4">Active Growth Generation</p>
-                            <p class="text-3xl font-bold text-white">50k<span class="text-base font-normal text-zinc-500"> EGP/mo</span></p>
-                        </div>
-                         <button @click="modalOpen = true; selectedPackage = {title: 'Strategic Partner'}" class="primary-btn w-full py-2 mt-6 font-bold">Choose Plan</button>
+                    <div class="glass-card border border-orange-300 ring-2 ring-orange-100">
+                        <h4 class="font-semibold text-lg">Strategic Partner</h4>
+                        <p class="text-sm text-gray-500 mb-3">50k EGP/mo</p>
+                        <button @click="modalOpen = true" class="mt-auto px-4 py-2 btn-peach w-full">Choose Plan</button>
                     </div>
-                    <div class="border border-zinc-800 p-6 rounded-lg flex flex-col">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-lg text-white">Market Dominance</h4>
-                            <p class="text-zinc-500 mb-4">Industry Legacy</p>
-                            <p class="text-3xl font-bold text-white">130k<span class="text-base font-normal text-zinc-500"> EGP/mo</span></p>
-                        </div>
-                        <button @click="modalOpen = true; selectedPackage = {title: 'Market Dominance'}" class="secondary-btn w-full py-2 mt-6">Details</button>
-                    </div>
-                </div>
-                 <div x-show="modalOpen" @keydown.escape.window="modalOpen = false" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-cloak>
-                    <div class="bg-black border border-zinc-700 rounded-lg max-w-lg w-full" @click.away="modalOpen = false" x-show="modalOpen" x-transition.opacity.duration.300ms>
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold text-white" x-text="selectedPackage.title"></h3>
-                            <p class="text-zinc-400 mt-2">Detailed information for this tier will be provided upon request.</p>
-                            <button @click="modalOpen = false" class="mt-6 w-full secondary-btn py-2 font-bold">Close</button>
-                        </div>
+                    <div class="glass-card">
+                        <h4 class="font-semibold text-lg">Market Dominance</h4>
+                        <p class="text-sm text-gray-500 mb-3">130k EGP/mo</p>
+                        <button @click="modalOpen = true" class="mt-auto px-4 py-2 btn-peach w-full">Details</button>
                     </div>
                 </div>
             </div>
 
-            <div class="bento-card md:col-span-3 text-center" data-aos="fade-up" x-data="{ formOpen: false, formSubmitted: false }">
-                <h3 class="font-bold text-3xl text-white mb-2">Connect With Us</h3>
-                <p class="text-zinc-400 mb-6">Schedule a brief call to align our strategy with your vision.</p>
-                <button @click="formOpen = true" class="primary-btn px-8 py-3 font-bold">Schedule Call</button>
-
-                 <div x-show="formOpen" @keydown.escape.window="formOpen = false" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-cloak>
-                    <div class="bg-black border border-zinc-700 rounded-lg max-w-md w-full" @click.away="formOpen = false" x-show="modalOpen" x-transition.opacity.duration.300ms>
-                        <div x-show="formSubmitted" class="p-8 text-center">
-                            <h3 class="text-2xl font-bold text-white mb-2">Thank You</h3>
-                            <p class="text-zinc-400 mb-6">Your request has been sent.</p>
-                            <button @click="formOpen = false; setTimeout(() => formSubmitted = false, 300)" class="secondary-btn w-full py-2 font-bold">Close</button>
-                        </div>
-                        <form x-show="!formSubmitted" id="strategy-form" class="space-y-6 p-8" action="YOUR_WEBHOOK_URL_HERE">
-                            <h3 class="text-2xl font-bold text-white text-center">Strategy Call</h3>
-                            <div>
-                                <label for="name" class="font-bold text-sm text-zinc-400">Full Name</label>
-                                <input type="text" id="name" name="name" required class="form-input w-full mt-1 p-3">
-                            </div>
-                            <div>
-                                <label for="company" class="font-bold text-sm text-zinc-400">Company Name</label>
-                                <input type="text" id="company" name="company" required class="form-input w-full mt-1 p-3">
-                            </div>
-                            <button type="submit" class="primary-btn w-full py-3 mt-4 font-bold">Send Request</button>
-                        </form>
-                    </div>
-                </div>
+            <!-- Call to Action -->
+            <div class="glass-card md:col-span-3 text-center" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-2">Connect With Us</h3>
+                <p class="text-gray-500 mb-6">Schedule a brief call to align our strategy with your vision.</p>
+                <button @click="modalOpen = true" class="px-6 py-3 btn-peach font-semibold">Schedule Call</button>
             </div>
-
         </div>
 
-        <footer class="text-center p-8 mt-16 text-zinc-600">
+        <!-- Modal -->
+        <div x-show="modalOpen" @keydown.escape.window="modalOpen = false" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-transition x-cloak>
+            <div class="glass-card w-full max-w-md" @click.away="modalOpen = false">
+                <h3 class="text-xl font-bold mb-4 text-center">Let’s Get Started</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm text-gray-600">Name</label>
+                        <input type="text" id="name" class="w-full px-4 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-200">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm text-gray-600">Email</label>
+                        <input type="email" id="email" class="w-full px-4 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-200">
+                    </div>
+                    <button type="submit" class="btn-peach w-full py-2 font-bold">Submit</button>
+                </form>
+                <button @click="modalOpen = false" class="text-sm mt-4 text-gray-500 hover:underline block mx-auto">Close</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-sm text-gray-400 mt-16">
             <p>&copy; 2025 Growth Architecture. All Rights Reserved.</p>
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
-    
+    <!-- Scripts -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        AOS.init({ duration: 800, once: true, offset: 50 });
+        AOS.init({ duration: 800, once: true });
 
-        if (window.CountUp) {
-            const options = { startVal: 0, duration: 3, enableScrollSpy: true, scrollSpyDelay: 100 };
-            new CountUp.CountUp('cagr', 8.39, { ...options, suffix: '%', decimalPlaces: 2 });
-        }
-        
-        const form = document.getElementById('strategy-form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const alpineComponent = document.querySelector('.bento-card[x-data]').__x;
-            const webhookUrl = form.action;
-            if (webhookUrl.includes("YOUR_WEBHOOK_URL_HERE")) {
-                alert("Form Error: Please connect the form to a webhook URL first.");
-                return;
-            }
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            fetch(webhookUrl, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: { 'Content-Type': 'application/json' }
-            }).then(res => {
-                if (res.ok) {
-                    alpineComponent.data.formSubmitted = true;
-                    form.reset();
-                } else {
-                    alert('There was a problem submitting your request.');
+        // Animate Number
+        document.addEventListener("DOMContentLoaded", function () {
+            const el = document.getElementById("cagr");
+            let count = 0;
+            const target = 8.39;
+            const interval = setInterval(() => {
+                count += 0.1;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(interval);
                 }
-            }).catch(error => alert('An error occurred.'));
+                el.textContent = count.toFixed(2) + "%";
+            }, 30);
         });
-    });
     </script>
 </body>
 </html>
