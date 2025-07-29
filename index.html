@@ -1,178 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growth Architecture | B2B Market Leadership</title>
+// Full Glassmorphism Website with Pastel Background, Animation & Tailwind CSS + Framer Motion
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+import { motion } from "framer-motion";
 
-    <!-- TailwindCSS & Alpine.js -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+export default function Home() {
+  return (
+    <main className="min-h-screen w-full bg-[#f6f1ec] flex items-center justify-center relative overflow-hidden p-6">
 
-    <!-- Custom Style -->
-    <style>
-        :root {
-            --bg-color: #F8F7F5;
-            --glass-bg: rgba(255, 255, 255, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.3);
-            --text-primary: #1A1A1A;
-            --text-secondary: #5E5E5E;
-            --accent-color: #FFB997;
-        }
+      {/* Decorative background blobs */}
+      <div className="absolute -top-20 -left-20 w-80 h-80 bg-[#ffb997] rounded-full blur-[120px] opacity-50 z-0"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#aee6e6] rounded-full blur-[160px] opacity-40 z-0"></div>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-        }
+      {/* Glassmorphism card */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="relative z-10 max-w-xl w-full p-10 bg-white/20 backdrop-blur-2xl border border-white/30 shadow-2xl rounded-[2rem] text-center"
+      >
+        <h1 className="text-5xl font-serif text-gray-800 mb-6">Welcome to Noon</h1>
+        <p className="text-lg font-light text-gray-700 mb-4">
+          Discover the art of minimal elegance. This glassy design blends pastel
+          softness with futuristic clarity, creating a clean and immersive experience.
+        </p>
+        <button className="mt-4 px-6 py-2 bg-white/40 hover:bg-white/60 text-gray-800 rounded-xl shadow-sm transition-all backdrop-blur-md">
+          Explore More
+        </button>
+      </motion.div>
 
-        .glass-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .text-serif {
-            font-family: 'DM Serif Display', serif;
-        }
-
-        .accent {
-            color: var(--accent-color);
-        }
-
-        .btn-peach {
-            background-color: var(--accent-color);
-            color: white;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-peach:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(255, 185, 151, 0.3);
-        }
-    </style>
-</head>
-<body class="antialiased" x-data="{ modalOpen: false }">
-    <div class="max-w-6xl mx-auto px-6 py-12">
-
-        <!-- Hero Section -->
-        <header class="text-center mb-16" data-aos="fade-up">
-            <h1 class="text-5xl md:text-7xl font-bold text-serif">Future-Proof</h1>
-            <h2 class="text-5xl md:text-7xl font-bold text-gray-400 mt-2">Your Growth</h2>
-            <p class="text-xl text-serif accent mt-4">High-Energy B2B Strategy & Execution</p>
-        </header>
-
-        <!-- Grid Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            <!-- Hero Image Card -->
-            <div class="glass-card md:col-span-2 md:row-span-2 min-h-[300px] flex items-center justify-center" data-aos="zoom-in">
-                <p class="text-lg text-center text-serif">Visual Placeholder</p>
-            </div>
-
-            <!-- Animated Metric -->
-            <div class="glass-card text-center" data-aos="fade-left">
-                <p id="cagr" class="text-6xl font-bold">0%</p>
-                <p class="text-sm text-gray-500 mt-2">Projected CAGR<br>in Key Sectors</p>
-            </div>
-
-            <!-- Tech Insight -->
-            <div class="glass-card" data-aos="fade-up">
-                <h3 class="text-lg font-bold mb-2">Technological Edge</h3>
-                <p class="text-gray-600">Data-driven insights and futuristic branding to build advantage.</p>
-            </div>
-
-            <!-- Pricing Cards -->
-            <div class="glass-card md:col-span-3" data-aos="fade-up">
-                <h3 class="text-xl font-bold text-center mb-6">Engagement Tiers</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="glass-card">
-                        <h4 class="font-semibold text-lg">Digital Engine</h4>
-                        <p class="text-sm text-gray-500 mb-3">35k EGP/mo</p>
-                        <button @click="modalOpen = true" class="mt-auto px-4 py-2 btn-peach w-full">Details</button>
-                    </div>
-                    <div class="glass-card border border-orange-300 ring-2 ring-orange-100">
-                        <h4 class="font-semibold text-lg">Strategic Partner</h4>
-                        <p class="text-sm text-gray-500 mb-3">50k EGP/mo</p>
-                        <button @click="modalOpen = true" class="mt-auto px-4 py-2 btn-peach w-full">Choose Plan</button>
-                    </div>
-                    <div class="glass-card">
-                        <h4 class="font-semibold text-lg">Market Dominance</h4>
-                        <p class="text-sm text-gray-500 mb-3">130k EGP/mo</p>
-                        <button @click="modalOpen = true" class="mt-auto px-4 py-2 btn-peach w-full">Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Call to Action -->
-            <div class="glass-card md:col-span-3 text-center" data-aos="fade-up">
-                <h3 class="text-2xl font-bold mb-2">Connect With Us</h3>
-                <p class="text-gray-500 mb-6">Schedule a brief call to align our strategy with your vision.</p>
-                <button @click="modalOpen = true" class="px-6 py-3 btn-peach font-semibold">Schedule Call</button>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div x-show="modalOpen" @keydown.escape.window="modalOpen = false" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-transition x-cloak>
-            <div class="glass-card w-full max-w-md" @click.away="modalOpen = false">
-                <h3 class="text-xl font-bold mb-4 text-center">Let’s Get Started</h3>
-                <form class="space-y-4">
-                    <div>
-                        <label for="name" class="block text-sm text-gray-600">Name</label>
-                        <input type="text" id="name" class="w-full px-4 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-200">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm text-gray-600">Email</label>
-                        <input type="email" id="email" class="w-full px-4 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-200">
-                    </div>
-                    <button type="submit" class="btn-peach w-full py-2 font-bold">Submit</button>
-                </form>
-                <button @click="modalOpen = false" class="text-sm mt-4 text-gray-500 hover:underline block mx-auto">Close</button>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="text-center text-sm text-gray-400 mt-16">
-            <p>&copy; 2025 Growth Architecture. All Rights Reserved.</p>
-        </footer>
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        AOS.init({ duration: 800, once: true });
-
-        // Animate Number
-        document.addEventListener("DOMContentLoaded", function () {
-            const el = document.getElementById("cagr");
-            let count = 0;
-            const target = 8.39;
-            const interval = setInterval(() => {
-                count += 0.1;
-                if (count >= target) {
-                    count = target;
-                    clearInterval(interval);
-                }
-                el.textContent = count.toFixed(2) + "%";
-            }, 30);
-        });
-    </script>
-</body>
-</html>
+    </main>
+  );
+}
