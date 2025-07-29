@@ -1,32 +1,258 @@
-// Full Glassmorphism Website with Pastel Background, Animation & Tailwind CSS + Framer Motion
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereal Growth | B2B Strategy</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <script src="//unpkg.com/alpinejs" defer></script>
+    
+    <style>
+        :root {
+            --bg-color: #FDFBFF;
+            --text-dark: #2D3748; /* Gray-800 */
+            --text-light: #718096; /* Gray-600 */
+            --accent-color: #FF7B54; /* Peachy Orange */
+            --accent-color-rgb: 255, 123, 84;
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.9);
+        }
 
-import { motion } from "framer-motion";
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
 
-export default function Home() {
-  return (
-    <main className="min-h-screen w-full bg-[#f6f1ec] flex items-center justify-center relative overflow-hidden p-6">
+        /* Soft Moving Background Blobs */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.6;
+        }
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(var(--accent-color-rgb), 0.5);
+            top: -150px;
+            left: -150px;
+            animation: move-blob-1 20s infinite alternate;
+        }
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background: rgba(var(--accent-color-rgb), 0.3);
+            bottom: -250px;
+            right: -200px;
+            animation: move-blob-2 25s infinite alternate;
+        }
+        @keyframes move-blob-1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(100px, 80px) scale(1.2); } }
+        @keyframes move-blob-2 { from { transform: translate(0, 0) scale(1); } to { transform: translate(-80px, -60px) scale(0.8); } }
 
-      {/* Decorative background blobs */}
-      <div className="absolute -top-20 -left-20 w-80 h-80 bg-[#ffb997] rounded-full blur-[120px] opacity-50 z-0"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#aee6e6] rounded-full blur-[160px] opacity-40 z-0"></div>
+        /* Light-Mode Glassmorphism Card Style */
+        .card-glass-light {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem; /* 24px */
+            box-shadow: 0 8px 32px 0 rgba(100, 100, 100, 0.1);
+            padding: 2.5rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .card-glass-light:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px 0 rgba(100, 100, 100, 0.15);
+        }
 
-      {/* Glassmorphism card */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="relative z-10 max-w-xl w-full p-10 bg-white/20 backdrop-blur-2xl border border-white/30 shadow-2xl rounded-[2rem] text-center"
-      >
-        <h1 className="text-5xl font-serif text-gray-800 mb-6">Welcome to Noon</h1>
-        <p className="text-lg font-light text-gray-700 mb-4">
-          Discover the art of minimal elegance. This glassy design blends pastel
-          softness with futuristic clarity, creating a clean and immersive experience.
-        </p>
-        <button className="mt-4 px-6 py-2 bg-white/40 hover:bg-white/60 text-gray-800 rounded-xl shadow-sm transition-all backdrop-blur-md">
-          Explore More
-        </button>
-      </motion.div>
+        /* Button Styles */
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: white;
+            transition: all 0.3s;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(var(--accent-color-rgb), 0.2);
+        }
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(var(--accent-color-rgb), 0.3);
+        }
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+        .secondary-btn:hover {
+            color: var(--text-dark);
+        }
+        
+        /* Form Input Style */
+        .form-input {
+             background-color: rgba(255, 255, 255, 0.5);
+             border: 1px solid var(--glass-border);
+             border-radius: 0.75rem;
+             color: var(--text-dark);
+             transition: all 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
 
-    </main>
-  );
-}
+    <div class="aurora-bg">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto p-4 md:p-8">
+
+        <header class="my-16 md:my-24 text-center" data-aos="fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-gray-800 mb-4">Clarity in Growth.</h1>
+            <p class="text-xl text-gray-500">Elegant strategies for ambitious B2B leaders.</p>
+        </header>
+
+        <section id="hero" class="mb-20" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-glass-light text-center">
+                <h2 class="text-3xl font-bold mb-2">A New Market Perspective</h2>
+                <p class="text-lg text-gray-600 max-w-xl mx-auto mb-8">The industry is experiencing unprecedented momentum. We provide the clarity to navigate this growth and establish market leadership.</p>
+                <div class="inline-block bg-white/50 p-6 rounded-2xl">
+                    <p id="cagr" class="text-6xl font-bold text-gray-800">0%</p>
+                    <p class="text-base text-gray-600 mt-1">Projected Annual Growth</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="packages" class="mb-20" x-data="{ modalOpen: false, selectedPackage: {} }">
+             <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-4xl font-bold tracking-tight text-gray-800">Our Services</h2>
+                <p class="text-lg text-gray-500 mt-2">Tailored tiers of strategic engagement.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-glass-light text-center" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-semibold mb-2">Foundation</h3>
+                    <p class="text-gray-600 mb-6">Establish a strong presence.</p>
+                    <p class="text-4xl font-bold mb-6">35k<span class="text-lg font-medium text-gray-500"> EGP/mo</span></p>
+                    <button @click="modalOpen = true; selectedPackage.title = 'Foundation'" class="secondary-btn font-semibold">Learn More</button>
+                </div>
+                <div class="transform md:scale-110 z-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-glass-light text-center">
+                        <h3 class="text-2xl font-semibold mb-2">Accelerator</h3>
+                        <p class="text-gray-600 mb-6">Generate tangible growth.</p>
+                        <p class="text-4xl font-bold mb-6">50k<span class="text-lg font-medium text-gray-500"> EGP/mo</span></p>
+                        <button @click="modalOpen = true; selectedPackage.title = 'Accelerator'" class="primary-btn px-8 py-3 font-semibold w-full">Choose Plan</button>
+                    </div>
+                </div>
+                <div class="card-glass-light text-center" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-semibold mb-2">Vanguard</h3>
+                    <p class="text-gray-600 mb-6">Define the industry standard.</p>
+                    <p class="text-4xl font-bold mb-6">130k<span class="text-lg font-medium text-gray-500"> EGP/mo</span></p>
+                    <button @click="modalOpen = true; selectedPackage.title = 'Vanguard'" class="secondary-btn font-semibold">Learn More</button>
+                </div>
+            </div>
+             <div x-show="modalOpen" @keydown.escape.window="modalOpen = false" class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-cloak>
+                <div class="card-glass-light max-w-md w-full" @click.away="modalOpen = false" x-show="modalOpen" x-transition.opacity.duration.300ms>
+                    <h3 class="text-2xl font-bold text-center" x-text="selectedPackage.title"></h3>
+                    <p class="text-gray-600 mt-4 text-center">Detailed service offerings for this tier are available upon request. Let's discuss your specific needs in a strategy call.</p>
+                    <button @click="modalOpen = false" class="mt-6 w-full secondary-btn py-2 font-bold">Close</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="mb-16" data-aos="fade-up" data-aos-delay="200" x-data="{ formOpen: false, formSubmitted: false }">
+            <div class="card-glass-light text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Ready to Begin?</h2>
+                <p class="text-lg text-gray-600 max-w-xl mx-auto mb-8">Let's schedule a brief introductory call to explore how we can elevate your brand together.</p>
+                <button @click="formOpen = true" class="primary-btn px-10 py-4 font-bold text-lg">Schedule a Strategy Call</button>
+            </div>
+
+            <div x-show="formOpen" @keydown.escape.window="formOpen = false" class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-cloak>
+                <div class="card-glass-light max-w-md w-full relative" @click.away="formOpen = false" x-show="formOpen" x-transition.opacity.duration.300ms>
+                    <div x-show="formSubmitted" class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Thank You</h3>
+                        <p class="text-gray-600 mb-6">Your request has been sent. We'll be in touch soon.</p>
+                        <button @click="formOpen = false; setTimeout(() => formSubmitted = false, 300)" class="secondary-btn font-bold py-2 px-4">Close</button>
+                    </div>
+                    <form x-show="!formSubmitted" id="strategy-form" class="space-y-6" action="YOUR_WEBHOOK_URL_HERE">
+                        <h3 class="text-2xl font-bold text-center">Schedule Your Call</h3>
+                        <div>
+                            <label for="name" class="font-semibold text-sm text-gray-700">Full Name</label>
+                            <input type="text" id="name" name="name" required class="form-input w-full mt-1 p-3">
+                        </div>
+                        <div>
+                            <label for="company" class="font-semibold text-sm text-gray-700">Company Name</label>
+                            <input type="text" id="company" name="company" required class="form-input w-full mt-1 p-3">
+                        </div>
+                        <button type="submit" class="primary-btn w-full py-3 mt-4 font-bold text-lg">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center p-8 text-gray-400">
+            <p>&copy; 2025 Ethereal Growth. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({ duration: 1000, once: true, offset: 50 });
+
+        if (window.CountUp) {
+            const options = { startVal: 0, duration: 3, enableScrollSpy: true, scrollSpyDelay: 100 };
+            new CountUp.CountUp('cagr', 8.39, { ...options, suffix: '%', decimalPlaces: 2 });
+        }
+        
+        const form = document.getElementById('strategy-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const alpineComponent = document.querySelector('#contact[x-data]').__x;
+            const webhookUrl = form.action;
+            if (webhookUrl.includes("YOUR_WEBHOOK_URL_HERE")) {
+                alert("Form Error: Please connect the form to a webhook URL first.");
+                return;
+            }
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            fetch(webhookUrl, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(res => {
+                if (res.ok) {
+                    alpineComponent.data.formSubmitted = true;
+                    form.reset();
+                } else {
+                    alert('There was a problem submitting your request.');
+                }
+            }).catch(error => alert('An error occurred.'));
+        });
+    });
+    </script>
+</body>
+</html>
